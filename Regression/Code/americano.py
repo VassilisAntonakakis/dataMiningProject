@@ -5,7 +5,7 @@ import csv
 import pandas as pd
 
 
-data = pd.read_csv('Bakery Sales.csv')
+data = pd.read_csv('Bakery Sum Sales.csv')
 
 # defining feature matrix(X) and response vector(y)
 X = data[['Day','Month']]

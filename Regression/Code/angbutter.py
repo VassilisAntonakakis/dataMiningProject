@@ -5,7 +5,7 @@ import csv
 import pandas as pd
 
 
-data = pd.read_csv('Bakery Sales.csv')
+data = pd.read_csv('Bakery Sum Sales.csv')
 
 # defining feature matrix(X) and response vector(y)
 X = data[['Day','Month','day of week']]
@@ -13,8 +13,7 @@ y = data['angbutter']
 
 # splitting X and y into training and testing sets
 from sklearn.model_selection import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.4,
-													random_state=1)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.4, random_state=1)
 
 # create linear regression object
 reg = linear_model.LinearRegression()

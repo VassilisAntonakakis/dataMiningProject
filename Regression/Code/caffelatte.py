@@ -8,7 +8,7 @@ import pandas as pd
 data = pd.read_csv('Bakery Sales.csv')
 
 # defining feature matrix(X) and response vector(y)
-X = data[['Day','Month','day of week']]
+X = data[['Day','Month']]
 y = data['caffe latte']
 
 # splitting X and y into training and testing sets
@@ -28,27 +28,15 @@ print('Coefficients: ', reg.coef_)
 # variance score: 1 means perfect prediction
 print('Variance score: {}'.format(reg.score(X_test, y_test)))
 
-# plot for residual error
+r_sq = reg.score(X_train, y_train)
+print(f"coefficient of determination: {r_sq}")
 
-## setting plot style
-plt.style.use('fivethirtyeight')
-
-## plotting residual errors in training data
-plt.scatter(reg.predict(X_train), reg.predict(X_train) - y_train,
-			color = "green", s = 10, label = 'Train data')
-
-## plotting residual errors in test data
-plt.scatter(reg.predict(X_test), reg.predict(X_test) - y_test,
-			color = "blue", s = 10, label = 'Test data')
-
-## plotting line for zero residual error
-plt.hlines(y = 0, xmin = 0, xmax = 50, linewidth = 2)
-
-## plotting legend
-plt.legend(loc = 'upper right')
-
-## plot title
-plt.title("Residual errors")
-
-## method call for showing the plot
-plt.show()
+a = input('Enter a Date value for prediction\nDay (1-30): ')
+b = input('Month (1-12):')
+c = np.array([int(a), int(b)])
+plist = c.reshape(1, -1)
+df=pd.DataFrame(plist,columns=['Day','Month'])
+x_pred = df
+y_pred = reg.predict(x_pred)
+print('Predicted value:')
+print(y_pred)
